@@ -16,7 +16,7 @@ class Main extends CylinderCalculator{
         Scanner dimensions = new Scanner(System.in);
         CylinderCalculator calc = new CylinderCalculator(); // Instantiating calc object
 
-        try{
+        try{ // Error handling
             System.out.println("Enter the radius: ");
             double rad = dimensions.nextDouble(); // Radius input
 
@@ -31,7 +31,7 @@ class Main extends CylinderCalculator{
             System.out.println("The volume of the cylinder is: " + volume);
 
         } catch (Exception e) {
-            System.out.println("VALUE ERROR: ENTER AN INTEGER!!");
+            System.out.println("VALUE ERROR: ENTER AN INTEGER!!"); // Throws an error message
     }
 
         dimensions.close(); // Close scanner object
