@@ -1,39 +1,55 @@
 import java.util.Scanner;
 
 // Base class
-class CylinderCalculator {
-    public static double pi = Math.PI; // Storing pi value in pi variable
-    public double area(double x, double y){
-        return 2 * (pi * x * (x + y));
+class Cylinder {
+    public static final double pi = Math.PI; // Storing pi value in PI constant
+
+    double radius;
+    double height;
+
+    public void getInput() {
+        Scanner dimensions = new Scanner(System.in);
+
+        System.out.println("Enter the radius: ");
+        radius = dimensions.nextDouble(); // Radius input
+
+        System.out.println("Enter the height: ");
+        height = dimensions.nextDouble(); // Height input
+
+        dimensions.close(); // Close the scanner to avoid resource leaks
     }
-    public double vol(double x, double y){
-        return pi * (x * x) * y;
+
+    public double area() {
+        return 2 * (pi * radius * (radius + height));
     }
 }
-// Main class inherits the attributes of the previous class.
-class Main extends CylinderCalculator{
+//Derived class
+class CylinderVol extends Cylinder {
+    public double volume() {
+        return pi * (radius * radius) * height;
+    }
+}
+
+public class Main {
     public static void main(String[] args) {
-        Scanner dimensions = new Scanner(System.in);
-        CylinderCalculator calc = new CylinderCalculator(); // Instantiating calc object
+        Cylinder calc = new Cylinder(); // Instantiating calc object
+        CylinderVol calcu = new CylinderVol();
 
-        try{ // Error handling
-            System.out.println("Enter the radius: ");
-            double rad = dimensions.nextDouble(); // Radius input
+        try { // Error handling
+            // Get user input
+            calc.getInput();
 
-            System.out.println("Enter the height: ");
-            double height = dimensions.nextDouble(); // Height input
+            calcu.radius = calc.radius; // Transfer radius value
+            calcu.height = calc.height; // Transfer height value
 
             // Accessing the attributes of the calc object to perform computations
-            double area = calc.area(rad,height);
-            double volume = calc.vol(rad,height);
+            double area = calc.area();
+            double volume = calcu.volume();
 
             System.out.println("The area of the cylinder is: " + area);
             System.out.println("The volume of the cylinder is: " + volume);
-
         } catch (Exception e) {
-            System.out.println("VALUE ERROR: ENTER AN INTEGER!!"); // Throws an error message
-    }
-
-        dimensions.close(); // Close scanner object
+            System.out.println("VALUE ERROR: ENTER A VALID NUMBER!");
+        }
     }
 }
