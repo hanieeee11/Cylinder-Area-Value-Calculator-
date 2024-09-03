@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 // Base class
 class Cylinder {
-    public static final double pi = Math.PI; // Storing pi value in PI constant
+    public static final double pi = Math.PI; // Storing pi value in pi constant
 
     double radius;
     double height;
